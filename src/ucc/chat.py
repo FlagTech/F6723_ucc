@@ -13,10 +13,10 @@ from ucc.mcp_utils import (
     tools_to_functions, sessions_to_functions
 )
 from ucc.google_search import google_search
-print(os.environ.get('GEMINI_API_KEY'))
-print(find_dotenv(usecwd=True))
-print(load_dotenv(dotenv_path=find_dotenv(usecwd=True)))
-print(os.environ.get('GEMINI_API_KEY'))
+from ucc.u_skills import get_skill
+
+load_dotenv(dotenv_path=find_dotenv(usecwd=True))
+
 client = genai.Client()
 console = Console()
 hist_file = "previous_interaction_id.txt"
@@ -120,7 +120,7 @@ def show_function_calls(
 
 async def main():
     hooks = [show_function_calls, show_text]
-    tools = [google_search]
+    tools = [get_skill]
     try:
         sessions = await load_mcp()
         await chat(tools, sessions, hooks)
