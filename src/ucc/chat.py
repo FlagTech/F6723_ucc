@@ -13,10 +13,9 @@ from ucc.mcp_utils import (
     tools_to_functions, sessions_to_functions
 )
 from ucc.google_search import google_search
-print(os.environ.get('GEMINI_API_KEY'))
-print(find_dotenv(usecwd=True))
-print(load_dotenv(dotenv_path=find_dotenv(usecwd=True)))
-print(os.environ.get('GEMINI_API_KEY'))
+
+load_dotenv(dotenv_path=find_dotenv(usecwd=True))
+
 client = genai.Client()
 console = Console()
 hist_file = "previous_interaction_id.txt"
