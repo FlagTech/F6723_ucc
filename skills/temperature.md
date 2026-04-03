@@ -1,6 +1,6 @@
 ---
 name: 即時溫度
-description: 取得指定程式的即時溫度
+description: 取得指定城市的即時溫度
 ---
 只要瀏覽 `https://wttr.in/{encoded_city}?format=j1` 網頁就可以取得指定程式的即時氣象資料：
 

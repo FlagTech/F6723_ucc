@@ -59,7 +59,8 @@ async def chat(
                 f"現在 GMT 日期與時間："
                 f"{time.strftime("%c", time.gmtime())}\n"
                 "請使用繁體中文\n"
-                "以 Markdown 格式回覆"
+                "以 Markdown 格式回覆\n"
+                "以使用工具優先，不要自己亂猜"
             ),
             stream=True,
         ):
