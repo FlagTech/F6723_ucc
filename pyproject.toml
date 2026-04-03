@@ -4,10 +4,15 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "google-genai>=1.70.0",
+    "mcp>=1.27.0",
+    "python-dotenv[cli]>=1.2.2",
+    "rich>=14.3.3",
+]
 
 [project.scripts]
-ucc = "ucc:main"
+ucc = "ucc:chat.run"
 
 [tool.uv]
 package = true

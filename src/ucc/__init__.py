@@ -1,5 +1,7 @@
+from ucc.u_skills import get_skill
+
 def main():
-    print("Hello from ucc!")
+    print(get_skill('API 設計'))
 
 
 if __name__ == "__main__":
