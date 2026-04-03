@@ -17,3 +17,5 @@ wheels/
 mcp_servers.json
 
 *.txt
+
+.playwright*/
