@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-ucc = "ucc:chat.run"
+ucc = "chat:run"
 
 [tool.uv]
 package = true

@@ -9,12 +9,12 @@ from google import genai
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.live import Live
-from ucc.mcp_utils import (
+from mcp_utils import (
     load_mcp, close_mcp, call_function, 
     tools_to_functions, sessions_to_functions
 )
-from ucc.google_search import google_search
-from ucc.u_skills import get_skill
+from google_search import google_search
+from u_skills import get_skill
 
 load_dotenv(dotenv_path=find_dotenv(usecwd=True))
 

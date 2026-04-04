@@ -1,6 +1,6 @@
 ---
 name: 瀏覽網頁
-description: 可以隨瀏覽網頁
+description: 可以隨意瀏覽網頁
 ---
 只要是需要瀏覽網頁的工作，都可以交由 `playwright-cli` 指令處理，
 使用方式如下：
