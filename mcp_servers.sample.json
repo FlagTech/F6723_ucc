@@ -1,5 +1,13 @@
 {
   "mcp_servers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y", 
+        "@modelcontextprotocol/server-filesystem",
+        "$CWD"
+      ]
+    },
     "shell": {
       "command": "uvx",
       "args": [

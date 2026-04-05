@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import json
 from mcp import ClientSession
@@ -12,6 +13,26 @@ from google import genai
 import httpx
 
 async_exit_stack = AsyncExitStack()
+
+def process_vars(info: dict) -> dict:
+    cwd = os.getcwd()
+    def replace_value(value):
+        if isinstance(value, str):
+            value = value.replace("$CWD", cwd)
+            value = re.sub(
+                r'\$INPUT\(([^)]*)\)',
+                lambda m: input(m.group(1)),
+                value
+            )
+            return value
+        elif isinstance(value, dict):
+            return {
+                k: replace_value(v) for k, v in value.items()
+            }
+        elif isinstance(value, list):
+            return [replace_value(item) for item in value]
+        return value
+    return {k: replace_value(v) for k, v in info.items()}
 
 async def get_remote_mcp_session(info:dict) -> ClientSession:
     if info.pop("type", None) == "http":
@@ -66,7 +87,9 @@ async def load_mcp():
 
     for name, info in server_infos:
         print(f"啟動 MCP 伺服器 {name}...", end="")
-        session = await get_remote_mcp_session(info)
+        session = await get_remote_mcp_session(
+            process_vars(info)
+        )
         sessions.append(session)
         print(f"OK")
     return sessions

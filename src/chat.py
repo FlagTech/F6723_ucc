@@ -19,6 +19,17 @@ from u_skills import get_skill
 load_dotenv(dotenv_path=find_dotenv(usecwd=True))
 
 client = genai.Client()
+
+def load_rules() -> str:
+    if os.path.exists("ucc.md"):
+        console.print('載入使用者規則')
+        with open("ucc.md", "r", encoding="utf-8") as f:
+            return (
+                "# 以下是使用者要求嚴格遵守的規範\n\n" + 
+                f.read()
+            )
+    return ""
+
 console = Console()
 hist_file = "previous_interaction_id.txt"
 
@@ -41,6 +52,8 @@ async def chat(
     else:
         previous_interaction_id = None
     
+    rules = load_rules()
+    
     results = [] # 單輪交談後的函式叫用結果
     while True:
         if not results:
@@ -61,8 +74,9 @@ async def chat(
                 f"{time.strftime("%c", time.gmtime())}\n"
                 "- 請使用繁體中文\n"
                 "以 Markdown 格式回覆\n"
-                "- 以使用工具優先，不要自己亂猜\n"
-                f"- 你所在的系統平台是 {sys.platform}\n"
+                "- 以使用工具或是 skills 優先，不要自己亂猜\n"
+                f"- 你所在的系統平台是 {sys.platform}\n\n"
+                + rules
             ),
             stream=True,
         ):
