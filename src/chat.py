@@ -65,7 +65,7 @@ async def chat(
             contents = results
         calls = [] # 串接串流過程中的函式叫用結果
         async for event in await client.aio.interactions.create(
-            model="gemini-2.5-flash",
+            model="gemini-3.1-pro-preview",
             previous_interaction_id=previous_interaction_id,
             input=contents,
             tools=functions,
