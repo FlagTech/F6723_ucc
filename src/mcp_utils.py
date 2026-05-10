@@ -143,12 +143,12 @@ async def call_function(
 
     # 不需要叫用函式
     if not (
-        event.event_type == "content.delta" and
-        event.delta.type == "function_call"
+        event.event_type == "step.start" and
+        event.step.type == "function_call"
     ):
         return results
-    name = event.delta.name
-    args = event.delta.arguments
+    name = event.step.name
+    args = event.step.arguments
     result = None
     # 先檢查工具清單
     for tool in tools:
@@ -171,7 +171,7 @@ async def call_function(
     if not result == None:
         results.append({
             "type": "function_result",
-            "call_id": event.delta.id,
+            "call_id": event.step.id,
             "name": name,
             "result": result
         })
