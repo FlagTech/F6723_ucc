@@ -65,7 +65,7 @@ async def chat(
             contents = results
         calls = [] # 串接串流過程中的函式叫用結果
         async for event in await client.aio.interactions.create(
-            model="gemini-3.1-pro-preview",
+            model="gemini-3-flash-preview",
             previous_interaction_id=previous_interaction_id,
             input=contents,
             tools=functions,
@@ -104,7 +104,8 @@ def show_text(event):
     if event.event_type == "step.start":
         if event.step.type == "model_output":
             for content in event.step.content:
-                text += content.text or ""
+                if content.type == "text":
+                    text += content.text or ""
         live = Live(
             Markdown(text),
             console=console,
